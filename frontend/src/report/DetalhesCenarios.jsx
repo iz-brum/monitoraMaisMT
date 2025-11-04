@@ -22,7 +22,6 @@ import CodeIcon from '@mui/icons-material/Code';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import LabelImportantIcon from '@mui/icons-material/LabelImportant';
 import BalanceIcon from '@mui/icons-material/Balance';
-import { color } from 'chart.js/helpers';
 
 const STATUS_CONFIG = {
     passed: { icon: '✔', label: 'Aprovado', color: 'success' },
