@@ -1,0 +1,74 @@
+/* frontend/src/styles/EstacaoDetalhes.css */
+.dados-basicos-container .grid-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 16px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-item label {
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.info-item.coordenadas {
+    grid-column: span 2;
+}
+
+.telemetria-container {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.grafico-container {
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.grafico-container h4 {
+    text-align: center;
+    margin-top: 8px;
+    color: #666;
+}
+
+.tabela-medicoes-container {
+    padding: 16px;
+    overflow-x: auto;
+}
+
+.medicoes-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.medicoes-table th,
+.medicoes-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.medicoes-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.loading, .error, .no-data {
+    padding: 24px;
+    text-align: center;
+    color: #666;
+}
+
+.error {
+    color: #dc3545;
+}

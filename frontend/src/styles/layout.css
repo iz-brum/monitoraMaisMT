@@ -1,0 +1,60 @@
+src/styles/layout.css
+
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.app-layout {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 190px 2fr minmax(50px, 1.6fr);
+
+    /* configuração para quando estiver usando navbar */
+    /* grid-template-rows: 35px 190px 2fr minmax(50px, 1.6fr); */
+
+}
+
+.section {
+    margin-bottom: 0.2rem;
+}
+
+.last-section {
+    margin-bottom: 0;
+}
+
+
+
+
+
+/* ===================================================== */
+
+/* Apenas para webkit/browsers modernos */
+.imported-layers-control-panel-root::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;   /* ou 'none' para sumir com o fundo */
+}
+
+.imported-layers-control-panel-root::-webkit-scrollbar-thumb {
+  background: rgba(120,130,140,0.16); /* cinza MUITO sutil */
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.imported-layers-control-panel-root::-webkit-scrollbar-thumb:hover {
+  background: rgba(80,90,120,0.22);   /* escurece ao passar o mouse */
+}
+
+.imported-layers-control-panel-root::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.imported-layers-control-panel-root {
+  scrollbar-width: thin;
+  scrollbar-color: #e0e2ef transparent;
+}
+
+
+/* ===================================================== */

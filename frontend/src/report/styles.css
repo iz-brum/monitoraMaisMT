@@ -1,0 +1,103 @@
+/* file: frontend/src/report/styles.css */
+
+/* Estilos globais para o layout do relatório */
+
+.container-ReportLayout {
+  width: 100vw;
+  min-height: 100vh;
+  height: 100vh;
+  /* Garante que ocupe toda a viewport */
+  background: inherit;
+  /* color: inherit; */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Scroll vertical */
+  box-sizing: border-box;
+  padding: 0;
+  flex: 1 1 auto;
+}
+
+/* Scrollbar estilizada (opcional) */
+.container-ReportLayout::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container-ReportLayout::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+/* Scrollbar estilizada para TODOS os elementos */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+.report-estatisticas-tooltip {
+  background: #222;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px #0006;
+}
+
+/* Estilos para a página resumo dos testes */
+.report-markdown {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem 2.5rem;
+  /* background: #fff; */
+  /* color: #222; */
+  border-radius: 8px;
+  box-shadow: 0 2px 16px #927e7e4f;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+.report-markdown h2 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.2em;
+}
+
+.report-markdown ul {
+  margin: 0.5em 0 1.5em 1.5em;
+  padding: 0;
+  list-style: disc;
+}
+
+.report-markdown li {
+  margin-bottom: 0.3em;
+  font-size: 1rem;
+}
+
+.report-markdown p,
+.report-markdown li,
+.report-markdown span {
+  line-height: 1.6;
+}
+
+.report-markdown section {
+  margin-bottom: 1.5rem;
+}
+
+.report-markdown .suite-title {
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.3em;
+  /* color: #444; */
+}
+
+.report-markdown .test-detail {
+  /* color: #555; */
+  font-size: 0.97em;
+}

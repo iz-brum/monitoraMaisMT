@@ -1,0 +1,100 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+/backend/coverage
+/frontend/coverage
+
+# Production
+/build
+/frontend/build
+/frontend/dist
+/backend/dist
+
+# Misc
+.DS_Store
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+debug.log
+*.log
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IDE - JetBrains
+.idea/
+*.iml
+*.iws
+
+# Cache
+.cache/
+.npm
+.eslintcache
+
+# Arquivos grandes
+*.db
+backend/apis/shared/cache/locations/geocache.db
+
+# Arquivos de configuração local
+start-tunnels.bat
+update-backend-url.bat
+view.json
+
+# Relatórios e arquivos temporários
+/report/
+/report/*
+*.report.json
+*.history.json
+*.history.js
+
+# Local data
+*.local
+.data/
+
+# Temp files
+.temp
+.tmp
+*.swp
+*.swo
+
+# System Files
+Thumbs.db
+desktop.ini
+
+# Optional: Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Reports and generated files
+/report/*.json
+/report/files/
+/backend/reports/
+
+# SSL/TLS Certificates
+*.pem
+*.key
+*.crt
+
+# Cloudflared binaries
+/tools/cloudflared*

@@ -1,0 +1,910 @@
+/* Estrutura Principal do HUD */
+
+/* Container principal do HUD */
+.hud-dinamico-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Conteúdo base: afeta todo o conteúdo das abas */
+.hud-content-container {
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    font-size: 0.95rem;
+    color: #222;
+    line-height: 1.6;
+    word-break: break-word;
+    /* overflow-y: auto; */
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+    border-radius: 0 0 12px 12px;
+    scroll-behavior: smooth;
+    cursor: auto;
+}
+
+
+/* Componente de Abas */
+
+.hud-tabs-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+}
+
+/* Container das abas */
+.hud-tabs-container {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    gap: 3px;
+    position: relative;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.hud-tabs-container::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+
+/* Aba */
+.hud-tab-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(249, 247, 247, 0.463);
+    border: 1px solid rgba(153, 218, 244, 0.699);
+    border-bottom: none;
+    padding: 4px 8px;
+    border-radius: 5px 5px 0 0;
+    font-size: 0.9rem;
+    color: #798f9599;
+    font-weight: 500;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: all 0.2s ease;
+}
+
+.hud-tab-button.active {
+    background: rgba(105, 214, 244, 0.3);
+    color: #111;
+    font-weight: 600;
+}
+
+/* Wrapper da aba com botão de fechar */
+.hud-tab-button-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 2px;
+    /* menor espaçamento entre título e X */
+}
+
+.hud-tab-close {
+    font-size: 0.9rem;
+    color: #aaa;
+    cursor: pointer;
+    padding-left: 4px;
+    line-height: 1;
+}
+
+.hud-tab-close:hover {
+    color: #e53935;
+}
+
+.hud-rotas .hud-tab-close {
+    display: none !important;
+}
+
+
+/* Setas laterais (scroll das abas) */
+.hud-tabs-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: #444;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+    background: transparent;
+    border: none;
+    padding: 2px 0;
+    transition: color 0.2s ease;
+    backdrop-filter: blur(3px);
+}
+
+/* Modificadores */
+.hud-tabs-arrow.left {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.hud-tabs-arrow.right {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.hud-tabs-arrow.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.hud-tabs-arrow:hover {
+    color: #111;
+}
+
+
+/* Estilos de Conteúdo */
+
+/* Títulos */
+.hud-content-container h1,
+.hud-content-container h2,
+.hud-content-container h3,
+.hud-content-container h4 {
+    margin: 0 0 0.7rem;
+    font-weight: 600;
+    color: #111;
+    letter-spacing: 0.4px;
+}
+
+.hud-content-container h1 {
+    font-size: 1.5rem;
+}
+
+.hud-content-container h2 {
+    font-size: 1.35rem;
+}
+
+.hud-content-container h3 {
+    font-size: 1.2rem;
+}
+
+.hud-content-container h4 {
+    font-size: 1.05rem;
+}
+
+/* Parágrafos */
+.hud-content-container p {
+    margin: 0.8rem 0;
+}
+
+/* Listas */
+.hud-content-container ul,
+.hud-content-container ol {
+    padding-left: 1.2rem;
+    margin: 0.75rem 0;
+}
+
+.hud-content-container ul li,
+.hud-content-container ol li {
+    margin-bottom: 0.4rem;
+}
+
+/* Códigos inline */
+.hud-content-container code {
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.85rem;
+    background: #f4f4f4;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+}
+
+/* Citações */
+.hud-content-container blockquote {
+    margin: 1rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid #ccc;
+    color: #555;
+    font-style: italic;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+/* Imagens responsivas */
+.hud-content-container img {
+    max-width: 70%;
+    height: auto;
+    margin: 0.5rem 0;
+}
+
+
+/* Componente de Tabela */
+
+/* Container da tabela - ESSENCIAL */
+.hud-table-wrapper {
+    max-height: 300px;
+    overflow-y: auto;
+    position: relative;
+    border: 1px solid #ddd;
+}
+
+/* Reset da tabela - CRUCIAL */
+.hud-table-wrapper table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Cabeçalho fixo - FUNCIONA 100% */
+.hud-table-wrapper thead th {
+    position: sticky;
+    top: -1px;
+    /* Ajuste fino para browsers diferentes */
+    z-index: 100;
+    background: rgb(138, 184, 248);
+    border-bottom: 2px solid #eee;
+    /* Garante renderização acelerada */
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    /* Efeito de sombra quando rolar */
+    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo das células */
+.hud-table-wrapper th,
+.hud-table-wrapper td {
+    padding: 9px;
+    text-align: left;
+}
+
+/* Linhas zebradas para melhor legibilidade */
+.hud-table-wrapper tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Scrollbar estilizada para tabelas com efeito glass */
+.hud-table-wrapper::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.hud-table-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.hud-table-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(140, 140, 140, 0.3);
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.hud-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(140, 140, 140, 0.6);
+}
+
+/* Firefox */
+.hud-table-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(140, 140, 140, 0.4) transparent;
+}
+
+
+/* Formulários */
+
+.hud-content-container input,
+.hud-content-container select,
+.hud-content-container textarea,
+.hud-content-container button {
+    font: inherit;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.hud-content-container input[type="range"] {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-sizing: content-box;
+}
+
+.hud-content-container label {
+    font-weight: 500;
+    margin-top: 0.5rem;
+    display: inline-block;
+}
+
+/* Textarea específico para comentários */
+.hud-content-container .hud-textarea-comentarios {
+    resize: none;
+    min-height: calc(4 * 1.5em + 2 * 0.75rem);
+    /* Altura para 4 linhas */
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font: inherit;
+    margin-bottom: 0.75rem;
+    box-sizing: border-box;
+}
+
+/* Mantenha os estilos gerais de textarea (caso queira aplicar a todos) */
+.hud-content-container textarea {
+    /* Estilos gerais (já existentes) */
+    min-height: auto;
+    /* Sobrescreve o valor padrão apenas para o de comentários */
+}
+
+/* Container do select */
+.hud-content-container select {
+    appearance: none;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 8px 0px 8px 12px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #333;
+    font-family: inherit;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' fill='%23666' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    transition: border-color 0.2s ease;
+}
+
+/* Animação de foco (com rotação da seta simulada via classe extra) */
+.hud-content-container select:focus {
+    border-color: #2196f3;
+    outline: none;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' fill='%232196f3' xmlns='http://www.w3.org/2000/svg'><path d='M7 14l5-5 5 5'/></svg>");
+    transition: background-image 0.3s ease;
+}
+
+input[type="color"] {
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0;
+    background: none;
+}
+
+/* Remove o estilo padrão do Chrome */
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 8px;
+}
+
+/* Firefox */
+input[type="color"]::-moz-color-swatch {
+    border: none;
+    border-radius: 8px;
+}
+
+.color-picker-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* espaço entre label e input */
+    margin-bottom: 1rem;
+}
+
+.color-picker-group label {
+    min-width: 100px;
+}
+
+.color-picker-group input {
+    margin: 0;
+}
+
+.checkbox-group {
+    margin-top: 0.6rem;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* espaço entre checkbox e texto */
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #2196f3;
+    /* cor da marca quando ativado */
+    cursor: pointer;
+    margin: 0;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.6rem;
+}
+
+.radio-label {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.radio-options-vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.radio-item input[type="radio"] {
+    accent-color: #2196f3;
+    cursor: pointer;
+    width: auto;
+}
+
+select,
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"] {
+    text-align: center;
+    text-align-last: center;
+    /* Para <select> em alguns navegadores */
+}
+
+/* Firefox precisa disso para centralizar <select> */
+select {
+    -moz-text-align-last: center;
+}
+
+.file-upload-wrapper-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-label {
+    background: #2196f3;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.file-label:hover {
+    background: #1976d2;
+}
+
+.file-name {
+    font-size: 0.88rem;
+    color: #444;
+    text-align: center;
+    max-width: 260px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* Botões */
+
+.hud-content-container button {
+    background-color: #2196f3;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border: none;
+}
+
+.hud-content-container button:hover {
+    background-color: #1976d2;
+}
+
+
+/* JSON Beautifier */
+
+
+.hud-json-viewer {
+    white-space: pre-wrap;
+    /* Quebra linhas longas automaticamente */
+    word-wrap: break-word;
+    /* Garante quebra de palavras grandes */
+    overflow-wrap: break-word;
+    /* Para compatibilidade futura */
+    font-family: 'Fira Code', 'Courier New', monospace;
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+
+/* Opcional: syntax highlight com regex via JS futuramente */
+.hud-json-viewer .json-key {
+    color: #1565c0;
+    font-weight: bold;
+}
+
+.hud-json-viewer .json-string {
+    color: #43a047;
+}
+
+.hud-json-viewer .json-number {
+    color: #e65100;
+}
+
+.hud-json-viewer .json-boolean {
+    color: #6a1b9a;
+}
+
+.hud-json-viewer .json-null {
+    color: #757575;
+}
+
+
+/* ==== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+body.modal-open {
+    overflow: hidden;
+    /* Trava scroll da página quando modal aberto */
+}
+
+
+/* HUD ESTAÇÕES ANA */
+.estacao-ana-hud {
+    min-width: 400px;
+    width: -webkit-fill-available;
+    max-width: 530px;
+}
+
+.estacao-ana-hud.historico-ativo {
+    max-width: 899px;
+}
+
+.estacao-info-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    border-left: 4px solid #007bff;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.45rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-item .label {
+    font-size: 0.85rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.info-item .value {
+    font-weight: 600;
+    color: #495057;
+}
+
+.medicoes-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+}
+
+.medicao-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid;
+}
+
+.medicao-card.nivel {
+    border-left-color: #17a2b8;
+}
+
+.medicao-card.vazao {
+    border-left-color: #28a745;
+}
+
+.medicao-card.chuva {
+    border-left-color: #6f42c1;
+}
+
+.medicao-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.medicao-text {
+    flex: 1;
+}
+
+.medicao-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.medicao-icon {
+    font-size: 1.25rem;
+}
+
+.medicao-header h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #495057;
+    font-weight: 600;
+}
+
+.medicao-info {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.medicao-valor {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #212529;
+    text-align: right;
+    min-width: 80px;
+    /* Garante alinhamento consistente */
+}
+
+.timestamp-container {
+    padding: 0rem 1rem 1rem;
+    border-radius: 0 0 8px 8px;
+    margin-top: 0.5rem;
+}
+
+.timestamp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.timestamp-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 6px;
+    box-shadow: -3px 4px 5px rgba(174, 83, 3, 0.191);
+}
+
+.timestamp-icon {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.timestamp-content {
+    flex: 1;
+}
+
+.timestamp-label {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.timestamp-value {
+    font-size: 0.95rem;
+    color: #212529;
+    font-weight: 500;
+}
+
+/* Status colors */
+.status-operando {
+    color: #28a745;
+}
+
+.status-desativada {
+    color: #dc3545;
+}
+
+.status-inativa {
+    color: #6c757d;
+}
+
+.status-atualizado {
+    color: #28a745;
+}
+
+.status-desatualizado {
+    color: #ffc107;
+    font-weight: 600;
+}
+
+.medicao-alerta {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.status-critico {
+    color: #e63946;
+}
+
+.status-moderado {
+    color: #f4a261;
+}
+
+.qualidade-alerta {
+    border-left: 4px solid #e63946;
+    background: #ffffff;
+}
+
+.qualidade-alerta-card {
+    margin-top: 1rem;
+}
+
+.qualidade-alerta-card .qualidade-alerta {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.problemas-lista {
+  margin: 0;
+  padding-left: 0;
+  font-size: 0.85rem;
+  list-style: none; /* Remove o pontinho */
+}
+
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .timestamp-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Propriedades para a tabela de focos de calor */
+
+/* Container principal refinado */
+.hud-focos-calor.compact {
+    width: fit-content;
+    max-width: 780px;
+    margin: 1rem auto;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Tabela em si */
+.hud-focos-calor.compact table {
+    font-size: 0.78rem;
+    table-layout: auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* Cabeçalhos com cor padrão e melhor contraste */
+.hud-focos-calor.compact th {
+    padding: 6px 10px;
+    background: #dceeff;
+    color: #222;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 2px solid #c0d9e8;
+    white-space: nowrap;
+}
+
+/* Células de dados centralizadas e refinadas */
+.hud-focos-calor.compact td {
+    padding: 6px 10px;
+    text-align: center;
+    color: #333;
+    white-space: nowrap;
+    border-bottom: 1px solid #eee;
+}
+
+/* Valores numéricos centralizados corretamente */
+.hud-focos-calor.compact td.numeric {
+    text-align: center !important;
+    font-family: inherit;
+}
+
+/* Hover suave para linhas */
+.hud-focos-calor.compact tbody tr:hover {
+    background-color: #f5faff;
+    transition: background 0.2s;
+}
+
+/* Tooltip leve */
+.hud-focos-calor.compact td[title] {
+    border-bottom: 1px dotted #999;
+    cursor: help;
+}
+
+/* Larguras mínimas por coluna */
+.hud-focos-calor.compact th:nth-child(1) {
+    max-width: 25px;
+}
+
+/* DATA */
+.hud-focos-calor.compact th:nth-child(2) {
+    max-width: 60px;
+}
+
+.hud-focos-calor.compact th:nth-child(3),
+.hud-focos-calor.compact th:nth-child(8) {
+    max-width: 50px;
+}
+
+.hud-focos-calor.compact th:nth-child(4),
+.hud-focos-calor.compact th:nth-child(5) {
+    max-width: 80px;
+}
+
+.hud-focos-calor.compact th:nth-child(6),
+.hud-focos-calor.compact th:nth-child(7) {
+    max-width: 70px;
+}
+
+.hud-focos-calor.compact th:nth-child(9),
+.hud-focos-calor.compact th:nth-child(10) {
+    max-width: 70px;
+}

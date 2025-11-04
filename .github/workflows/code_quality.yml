@@ -1,0 +1,67 @@
+name: Code Quality
+
+on:
+  pull_request:
+    paths:
+      - 'frontend/**'
+      - 'backend/**'
+
+jobs:
+  frontend-quality:
+    name: Frontend Quality Checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: Plato report
+        run: npm run report:plato
+
+      - name: Madge cycles
+        run: npm run dep:cycles
+
+      - name: Upload Plato report artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: plato-report-frontend
+          path: reports/plato
+
+  backend-quality:
+    name: Backend Quality Checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: ESLint (backend)
+        run: npm run lint
+
+      - name: Madge cycles (backend)
+        run: npm run dep:cycles

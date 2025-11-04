@@ -1,0 +1,122 @@
+/* frontend/src/styles/Graficocard.css */
+
+/* Estilos base */
+.grafico-card {
+    background-color: #051522;
+    padding: 0.45rem;
+    color: white;
+    font-weight: bold;
+}
+
+.grafico-titulo {
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: #7fff00f2;
+}
+
+.grafico-conteudo {
+    height: calc(100% - 25px);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Variações por tipo de gráfico */
+.grafico-card.tipo-chuva {
+    background: linear-gradient(180deg, #09139b, #057cb8fb);
+}
+
+.grafico-card.tipo-focos {
+    background: linear-gradient(180deg, #c00e31, #d6540a);
+}
+
+
+
+
+
+/* ABA HISTÓRICO */
+
+.aba-historico-container>.grafico-card.tipo-chuva,
+.aba-historico-container>.grafico-card.tipo-nivel,
+.aba-historico-container>.grafico-card.tipo-vazao {
+    background: #f4f4f4;
+    border-radius: 10px;
+    padding: 0px 0px 0px 0px;
+}
+
+.historico-controls-inline {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.select-group.inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    /* 🔒 Impede quebra do label */
+    font-size: 0.95rem;
+    /* Aumenta um pouco o tamanho do texto */
+}
+
+.select-group.inline label {
+    font-weight: 500;
+    min-width: max-content;
+    /* Garante que ocupe só o necessário */
+}
+
+.control-select.small {
+    font-size: 0.85rem;
+    padding: 1px 25px 0px 5px;
+    height: 28px;
+    max-width: 115px;
+    margin-bottom: -2px;
+}
+
+.grafico-vazio {
+    width: 100%;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 8px;
+    color: #bdbdbd;
+    font-weight: 500;
+    font-size: 1.08rem;
+    gap: 0.7rem;
+}
+
+.grafico-vazio img {
+    width: 100px;
+    height: auto;
+    opacity: 0.7;
+    margin-bottom: 0.2rem;
+}
+
+.grafico-overlay-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+    /* o blur da camada de cima */
+    background-color: rgba(255, 255, 255, 0.4);
+    /* opcional */
+    z-index: 10;
+    border-radius: 8px;
+}
+
+.grafico-blurred {
+    filter: blur(2px);
+    pointer-events: none;
+    /* impede interação com gráfico durante loading */
+    transition: filter 0.2s ease-out;
+}

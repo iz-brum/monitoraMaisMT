@@ -1,0 +1,609 @@
+.mapa-card {
+    background-color: #6b8375;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.mapa-leaflet {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.leaflet-left {
+    left: -7px !important;
+    opacity: 0.85;
+}
+
+.leaflet-right {
+    right: -7px !important;
+    opacity: 0.85;
+}
+
+.leaflet-control-custom {
+    cursor: pointer !important;
+}
+
+.leaflet-control-locate {
+    display: block !important;
+    visibility: visible !important;
+    z-index: 1000;
+}
+
+.leaflet-top .leaflet-control {
+    margin-top: 3px !important;
+}
+
+.leaflet-control-custom {
+    min-width: 33px;
+    min-height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #fff;
+    border: none;
+    border-radius: 2px;
+    font-size: 18px;
+    padding: 0;
+}
+
+.leaflet-control-custom:hover {
+    background-color: #f0f0f0;
+}
+
+/* ============== ROTA ============== */
+/* Container principal */
+.route-info-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Modo de transporte */
+.transport-mode {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.transport-icon {
+    font-size: 20px;
+    background: #f0f5ff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.transport-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Métricas da rota */
+.route-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.metric-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.metric-card:hover {
+    background: #f0f5ff;
+    transform: translateY(-2px);
+}
+
+.metric-icon {
+    font-size: 18px;
+    background: rgba(33, 150, 243, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2196F3;
+}
+
+.metric-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 2px;
+}
+
+.metric-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* Informações de waypoints */
+.waypoints-info {
+    margin-top: 10px;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 13px;
+}
+
+.waypoint-card {
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: #f9f9f9;
+}
+
+.waypoint-card.origin {
+    border-left: 3px solid #4CAF50;
+}
+
+.waypoint-card.destination {
+    border-left: 3px solid #FF5722;
+}
+
+.waypoint-icon {
+    font-size: 18px;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.waypoint-card.origin .waypoint-icon {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.waypoint-card.destination .waypoint-icon {
+    background: rgba(255, 87, 34, 0.1);
+    color: #FF5722;
+}
+
+.waypoint-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 2px;
+}
+
+.waypoint-address {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* Loader */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+/* Efeitos de hover */
+.metric-card,
+.waypoint-card {
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+.metric-card:hover,
+.waypoint-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Container principal */
+.instructions-container {
+    padding: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ddd transparent;
+}
+
+/* Personalização da scrollbar */
+.instructions-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.instructions-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.instructions-container::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 3px;
+}
+
+/* Segmento da rota */
+.route-segment {
+    margin-bottom: 16px;
+}
+
+.route-btn {
+    padding: 6px 10px;
+    font-size: 14px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.route-actions {
+    display: flex;
+    gap: 8px;
+    /* Espaçamento entre os botões */
+    margin-top: 15px;
+    justify-content: center;
+    /* Centraliza os botões horizontalmente */
+}
+
+
+/* Passo de navegação */
+.navigation-step {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.navigation-step:hover {
+    transform: translateX(2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ícone do passo */
+.step-icon {
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Conteúdo do passo */
+.step-content {
+    flex: 1;
+}
+
+.step-instruction {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+/* Container das métricas - NOVO ESTILO */
+.step-metrics {
+    display: flex;
+    justify-content: flex-end;
+    /* Alinha à direita */
+    gap: 12px;
+    font-size: 15px;
+    margin-left: auto;
+    /* Força alinhamento à direita */
+}
+
+/* Versão alternativa para alinhar métricas na mesma linha da instrução */
+.alternative-layout .step-content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.alternative-layout .step-instruction {
+    margin-right: 16px;
+    /* Espaço entre texto e métricas */
+}
+
+.alternative-layout .step-metrics {
+    margin-left: 0;
+}
+
+.metric {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #666;
+}
+
+.metric.distance {
+    color: #4CAF50;
+}
+
+.metric.duration {
+    color: #2196F3;
+}
+
+/* Ícones específicos por tipo de instrução */
+.navigation-step[data-type="left"] .step-icon {
+    background: rgba(33, 150, 243, 0.1);
+    color: #2196F3;
+}
+
+.navigation-step[data-type="right"] .step-icon {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.navigation-step[data-type="straight"] .step-icon {
+    background: rgba(255, 152, 0, 0.1);
+    color: #FF9800;
+}
+
+.navigation-step[data-type="u-turn"] .step-icon {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9C27B0;
+}
+
+.navigation-step[data-type="roundabout"] .step-icon {
+    background: rgba(0, 150, 136, 0.1);
+    color: #009688;
+}
+
+.navigation-step[data-type="arrival"] .step-icon {
+    background: rgba(255, 193, 7, 0.1);
+    color: #FFC107;
+}
+
+.navigation-step[data-type="departure"] .step-icon {
+    background: rgba(103, 58, 183, 0.1);
+    color: #673AB7;
+}
+
+.navigation-step[data-type="default"] .step-icon {
+    background: rgba(158, 158, 158, 0.1);
+    color: #9E9E9E;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+    margin-bottom: 3px;
+    border-radius: 3px !important;
+}
+
+.leaflet-control-scale-line {
+    border: 2px solid #777;
+    border-top: none;
+    line-height: 1.1;
+    padding: 2px 5px 1px;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.8);
+    text-shadow: 1px 1px #fff;
+    margin-left: 5px;
+    margin-bottom: -5px;
+}
+
+.leaflet-control-attribution {
+    right: 8px !important;
+    /* Garante espaço da borda direita */
+    margin-bottom: 2px !important;
+}
+
+.rotas-toggle-btn {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+/* Ícone padrão: cinza escuro */
+.rotas-toggle-btn svg path {
+    fill: #000;
+    transition: fill 0.3s ease;
+}
+
+/* Hover leve quando inativo */
+.rotas-toggle-btn:hover {
+    background-color: #eaeaea;
+}
+
+.rotas-toggle-btn:hover svg path {
+    fill: #0056d2;
+}
+
+/* Botão ativo com gradiente azul */
+.rotas-toggle-btn.active {
+    background: linear-gradient(145deg, #007bff, #0056d2);
+    color: white;
+    box-shadow: 0 3px 10px rgba(0, 123, 255, 0.4);
+}
+
+/* Ícone branco quando ativo */
+.rotas-toggle-btn.active svg path {
+    fill: white;
+}
+
+/* Hover quando ativo: brilho */
+.rotas-toggle-btn.active:hover {
+    background: linear-gradient(145deg, #339aff, #0066cc);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.6);
+}
+
+.rotas-toggle-btn.active:hover svg path {
+    fill: #000;
+    /* leve branco azulado */
+}
+
+
+/* Estilo compacto para o container existente */
+.ana-legenda-compact {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #2d3748;
+    margin-left: 8px;
+}
+
+.ana-legenda-titulo {
+    font-weight: 600;
+    color: #1a365d;
+    margin-bottom: 8px;
+    font-size: 14px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 4px;
+}
+
+.ana-legenda-linha {
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+    gap: 8px;
+}
+
+.ana-legenda-bolinha {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.ana-legenda-linha em {
+    color: #718096;
+    font-size: 0.9em;
+    font-style: normal;
+}
+
+/* Mantendo as cores originais */
+.chuva-muito-forte {
+    background-color: #c211fd;
+}
+
+.chuva-forte {
+    background-color: #132572;
+}
+
+.chuva-moderada {
+    background-color: #3159e4;
+}
+
+.chuva-fraca {
+    background-color: #3ea7e4;
+}
+
+.sem-chuva {
+    background-color: #7fb0fd;
+}
+
+.sem-dados {
+    background-color: #828282;
+}
+
+.upload-toggle-btn svg {
+  margin: 5px 0 -5px 0;
+}
+
+/* Cor padrão do ícone */
+.upload-toggle-btn svg path {
+    fill: #000;
+    transition: fill 0.3s ease;
+}
+
+.upload-toggle-btn:hover {
+  filter: brightness(1.1);
+}
+
+.upload-toggle-btn:hover svg path {
+    fill: #0056d2;
+}
+
+
+.leaflet-control-geocoder-icon {
+    background-image: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.leaflet-control-geocoder-icon svg path {
+    fill: #000;
+    transition: fill 0.3s ease;
+}
+
+.leaflet-control-geocoder-icon:hover svg path {
+    fill: #007bff;
+}
+
+.leaflet-control-geocoder-icon svg {
+  margin-bottom: -5px;
+}
+
+.leaflet-control-geocoder-form input[type="text"] {
+  height: 22px;         /* altura maior */
+  font-size: 15px;      /* aumenta o texto proporcionalmente */
+  padding: 4px;     /* espaço interno */
+  line-height: 1.4;
+}
+
+@keyframes municipio-full-anim {
+  0% {
+    stroke-width: 2;
+    stroke: var(--anim-color, #6b042a);
+    fill: var(--anim-fill, rgba(0,90,255,0.10));
+    opacity: 0.7;
+  }
+  30% {
+    stroke-width: 10;
+    stroke: var(--anim-color, #6b042a);
+    fill: var(--anim-fill, rgba(0,90,255,0.22));
+    opacity: 1;
+  }
+  60% {
+    stroke-width: 10;
+    stroke: var(--anim-color, #6b042a);
+    fill: var(--anim-fill, rgba(0,90,255,0.16));
+    opacity: 0.85;
+  }
+  100% {
+    stroke-width: 2;
+    stroke: var(--anim-color, #6b042a);
+    fill: var(--anim-fill, rgba(0,90,255,0.10));
+    opacity: 0.7;
+  }
+}
+
+.municipio-animado {
+  animation: municipio-full-anim 1s cubic-bezier(0.4, 0, 0.2, 1) 50ms 1;
+  transition: stroke-width 0.3s, opacity 0.3s, fill 0.3s, stroke 0.3s;
+}

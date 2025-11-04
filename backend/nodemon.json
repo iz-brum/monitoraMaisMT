@@ -1,0 +1,15 @@
+{
+  "watch": [
+    "server.js",
+    "app.js",
+    "apis/"
+  ],
+  "ext": "js,json",
+  "ignore": [
+    "node_modules/",
+    "public/",
+    "**/blacklist.json",
+    "**/whitelist.json"
+  ],
+  "exec": "node server.js"
+}

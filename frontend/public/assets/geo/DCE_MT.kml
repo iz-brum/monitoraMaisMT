@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <!-- Define um estilo com ícone personalizado e label -->
+    <Style id="customIconStyle">
+      <IconStyle>
+        <scale>1.0</scale>
+        <Icon>
+          <href>https://i.postimg.cc/0NkCyzYd/LOGO-sem-fundo.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+
+    <Placemark>
+      <name>Defesa Civil - MT</name>
+      <description>
+        <![CDATA[
+          <!-- Tabela 1: Informações Gerais -->
+          <table border="1" cellpadding="4" cellspacing="0">
+          <tr>
+          <th>Campo</th>
+          <th>Detalhe</th>
+          </tr>
+          <tr>
+          <td>Órgão</td>
+          <td>Secretaria Adjunta de Proteção e Defesa Civil de Mato Grosso</td>
+          </tr>
+          <tr>
+          <td>Endereço</td>
+          <td>
+                          Palácio Paiaguás<br/>
+                          Avenida Desembargador Carlos, S/N<br/>
+                          Centro Político Administrativo<br/>
+                          Cuiabá – MT<br/>
+                          CEP 78049-903
+                        </td>
+          </tr>
+          <tr>
+          <td>Atendimento</td>
+          <td>Segunda a Sexta: 08h00 às 18h00</td>
+          </tr>
+          <tr>
+          <td>Recepção</td>
+          <td>
+                          Nelide Maria Boff Quintela<br/>
+                          Telefone: (65) 3613-4469
+                        </td>
+          </tr>
+          <tr>
+          <td>E-mail</td>
+          <td>defesacivil@defesacivil.mt.gov.br</td>
+          </tr>
+          <tr>
+          <td>Website</td>
+          <td>
+          <a href="https://www.defesacivil.mt.gov.br" target="_blank">
+                            www.defesacivil.mt.gov.br
+                          </a>
+          </td>
+          </tr>
+          <tr>
+          <td>Nossos Contatos Virtuais</td>
+          <td>
+                          Facebook: <a href="https://www.facebook.com/defesacivilmt" target="_blank">
+                            facebook.com/defesacivilmt
+                          </a><br/>
+                          Instagram: @defesacivilmt
+                        </td>
+          </tr>
+          </table>
+
+          <br/>
+
+          <!-- Tabela 2 Refatorada: Estrutura Organizacional (2 colunas) -->
+          <table border="1" cellpadding="4" cellspacing="0">
+          <tr style="background:#ddd">
+          <th width="40%">Divisão/Responsável</th>
+          <th width="60%">Detalhes</th>
+          </tr>
+          <tr>
+          <td><strong>Gabinete do Secretário Adjunto</strong><br/>Cesar C. Viana de Brum – Cel BM</td>
+          <td><strong>Cargo:</strong> Secretário Adjunto de Proteção e Defesa Civil<br/>
+          <strong>Telefone:</strong> (65) 3613-4467<br/>
+          <strong>E-mail:</strong> gabinete@defesacivil.mt.gov.br</td>
+          </tr>
+          <tr>
+          <td><strong>Assessoria Técnica</strong><br/>Lucas Souza Chermont – Maj BM</td>
+          <td><strong>Cargo:</strong> Assessor Técnico<br/>
+          <strong>Telefone:</strong> (65) 3613-4465<br/>
+          <strong>E-mail:</strong> assessoriaespecial@defesacivil.mt.gov.br</td>
+          </tr>
+          <tr>
+          <td><strong>Superintendência de Proteção e Defesa Civil</strong><br/>Luis Cláudio Pereira da Cruz – TC BM</td>
+          <td><strong>Cargo:</strong> Superintendente<br/>
+          <strong>E-mail:</strong> supdec@defesacivil.mt.gov.br</td>
+          </tr>
+          <tr>
+          <td><strong>Coordenadoria de Logística Humanitária</strong><br/>Alexandre Xavier de Araújo</td>
+          <td><strong>Cargo:</strong> Coordenadora<br/>
+          <strong>Telefone:</strong> (65) 3613-4465<br/>
+          <strong>E-mail:</strong> clh@defesacivil.mt.gov.br</td>
+          </tr>
+          <tr>
+          <td><strong>Gerência de Mobilização de Pessoas</strong><br/>Erika Cristina Soares Silva</td>
+          <td><strong>Cargo:</strong> Gerente<br/>
+          <strong>E-mail:</strong> clh@defesacivil.mt.gov.br</td>
+          </tr>
+          <tr>
+          <td><strong>Gerência de Logística e Suprimentos</strong><br/>Gustavo Lopes Barbosa</td>
+          <td><strong>Cargo:</strong> Gerente<br/>
+          <strong>E-mail:</strong> logistica@defesacivil.mt.gov.br</td>
+          </tr>
+          <tr>
+          <td><strong>Coordenadoria de Prevenção e Preparação</strong><br/>José Bruno de Souza Filho – Sub Ten BM</td>
+          <td><strong>Cargo:</strong> Coordenador<br/>
+          <strong>Telefone:</strong> (65) 3613-4466<br/>
+          <strong>E-mail:</strong> cpp@defesacivil.mt.gov.br</td>
+          </tr>
+          <tr>
+          <td><strong>Gerência de Prevenção e Mitigação</strong><br/>Luiz Carlos Monteiro da Silva – SD BM</td>
+          <td><strong>Cargo:</strong> Gerente<br/>
+          <strong>E-mail:</strong> prevencao@defesacivil.mt.gov.br</td>
+          </tr>
+          <tr>
+          <td><strong>Gerência de Preparação</strong><br/>Jean Carlos de Arruda Pazim – 3º SGT BM</td>
+          <td><strong>Cargo:</strong> Gerente<br/>
+          <strong>E-mail:</strong> preparacao@defesacivil.mt.gov.br</td>
+          </tr>
+          <tr>
+          <td><strong>Coordenadoria de Operações</strong><br/>Hector Lopes de Oliveira – 1º SGT BM</td>
+          <td><strong>Cargo:</strong> Coordenador<br/>
+          <strong>Telefone:</strong> (65) 3613-4468<br/>
+          <strong>E-mail:</strong> cop@defesacivil.mt.gov.br</td>
+          </tr>
+          <tr>
+          <td><strong>Gerência de Reconstrução</strong><br/>Jaimes Douglas Pereira de Souza – 3º SGT BM</td>
+          <td><strong>Cargo:</strong> Gerente<br/>
+          <strong>Telefone:</strong> (65) 3613-8405<br/>
+          <strong>E-mail:</strong> reconstrucao@defesacivil.mt.gov.br</td>
+          </tr>
+          <tr>
+          <td><strong>Gerência de Resposta</strong><br/>João Keney da Silva Felisberto – 3º SGT BM</td>
+          <td><strong>Cargo:</strong> Gerente<br/>
+          <strong>Telefone:</strong> (65) 3613-8405<br/>
+          <strong>E-mail:</strong> resposta@defesacivil.mt.gov.br</td>
+          </tr>
+          </table>
+        ]]>
+      </description>
+      <styleUrl>#customIconStyle</styleUrl>
+      <Point>
+        <coordinates>-56.07522231119225,-15.56800916459421</coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>

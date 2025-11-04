@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Setor de risco 1.kmz</name>
+	<Schema name="formulario" id="formulario">
+		<SimpleField type="float" name="fid"></SimpleField>
+		<SimpleField type="int" name="Setor de Risco"></SimpleField>
+		<SimpleField type="string" name="Descrição"></SimpleField>
+		<SimpleField type="int" name="Fatores de Suscetibilidade"></SimpleField>
+		<SimpleField type="int" name="Relevo"></SimpleField>
+		<SimpleField type="int" name="Hidrografia"></SimpleField>
+		<SimpleField type="int" name="Vegetação"></SimpleField>
+		<SimpleField type="int" name="Infraestrutura"></SimpleField>
+		<SimpleField type="int" name="Saneamento Básico"></SimpleField>
+		<SimpleField type="int" name="Causas e Agravantes da Instabilidade"></SimpleField>
+		<SimpleField type="int" name="Fatores de Riscos Hidrológicos "></SimpleField>
+		<SimpleField type="string" name="Foto 1"></SimpleField>
+		<SimpleField type="string" name="Foto 2"></SimpleField>
+		<SimpleField type="string" name="Foto 3"></SimpleField>
+		<SimpleField type="string" name="Foto 4"></SimpleField>
+		<SimpleField type="string" name="Foto 5"></SimpleField>
+		<SimpleField type="string" name="Foto 6"></SimpleField>
+		<SimpleField type="string" name="Video"></SimpleField>
+	</Schema>
+	<Style id="style">
+		<LineStyle>
+			<color>ff0055ff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="style0">
+		<LineStyle>
+			<color>ff0055ff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="stylemap_id8">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#style</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#style0</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark id="formulario.1">
+		<styleUrl>#stylemap_id8</styleUrl>
+		<ExtendedData>
+			<SchemaData schemaUrl="#formulario">
+				<SimpleData name="fid">1</SimpleData>
+				<SimpleData name="Setor de Risco">2</SimpleData>
+				<SimpleData name="Descrição">Setor 01</SimpleData>
+				<SimpleData name="Fatores de Suscetibilidade">1</SimpleData>
+				<SimpleData name="Relevo">3</SimpleData>
+				<SimpleData name="Hidrografia">1</SimpleData>
+				<SimpleData name="Vegetação">4</SimpleData>
+				<SimpleData name="Infraestrutura">2</SimpleData>
+				<SimpleData name="Saneamento Básico">2</SimpleData>
+				<SimpleData name="Causas e Agravantes da Instabilidade">18</SimpleData>
+				<SimpleData name="Fatores de Riscos Hidrológicos ">1</SimpleData>
+				<SimpleData name="Foto 1">DCIM/formulario_20250505160617246.jpg</SimpleData>
+				<SimpleData name="Foto 2">DCIM/formulario_20250505162822094.jpg</SimpleData>
+				<SimpleData name="Foto 3">DCIM/formulario_20250505164321410.jpg</SimpleData>
+				<SimpleData name="Foto 4">DCIM/JPEG_20250505204340297.jpg</SimpleData>
+				<SimpleData name="Foto 5">DCIM/JPEG_20250505204615119.jpg</SimpleData>
+				<SimpleData name="Foto 6">DCIM/JPEG_20250505204638212.jpg</SimpleData>
+			</SchemaData>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-57.6860347509864,-16.0798534755637,0 -57.686425669468,-16.079879892489,0 -57.6884589547937,-16.0805694661263,0 -57.6885077167078,-16.0802214573898,0 -57.6877240331956,-16.0797768888548,0 -57.6865443268681,-16.0795532653147,0 -57.68487739127239,-16.0795444094792,0 -57.6853038441908,-16.0803204297054,0 -57.6860328951196,-16.0798657773475,0 -57.6860347509864,-16.0798534755637,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+		<atom:link rel="app" href="https://www.google.com/earth/about/versions/#earth-pro" title="Google Earth Pro 7.3.6.10201"></atom:link>
+	</Placemark>
+</Document>
+</kml>
