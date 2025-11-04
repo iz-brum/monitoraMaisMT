@@ -109,9 +109,9 @@ export default function DetalhesCenarios() {
 
 
     return (
-        <ReportLayout sx={{ 
+        <ReportLayout sx={{
             p: 3
-             }}>
+        }}>
             <ReportHeader
                 title="Detalhes dos Cenários"
                 generatedAt={data.generatedAt}
