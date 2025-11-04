@@ -2,13 +2,39 @@
 
 const API_BASE_URL = (() => {
   const isTunnelAccess = window.location.hostname.includes('trycloudflare.com');
-  return isTunnelAccess
-    ? import.meta.env.VITE_API_TUNNEL_URL
-    : (import.meta.env.VITE_API_BASE_URL || "http://localhost:4001");
+  if (isTunnelAccess) {
+    return import.meta.env.VITE_API_TUNNEL_URL;
+  }
+  
+  const configuredBaseUrl = import.meta.env.VITE_API_BASE_URL;
+  if (configuredBaseUrl) {
+    return configuredBaseUrl;
+  }
+  
+  // Em produção (Vercel), usa o próprio domínio
+  if (typeof window !== 'undefined') {
+    return window.location.origin;
+  }
+  
+  // Fallback para desenvolvimento
+  return "http://localhost:4001";
 })();
 
 export function montarUrl(endpoint, params = {}) {
-  const url = new URL(`${API_BASE_URL}${endpoint}`);
+  let baseUrl = API_BASE_URL;
+  
+  // Se baseUrl já termina com '/' e endpoint começa com '/', remove uma barra
+  if (baseUrl.endsWith('/') && endpoint.startsWith('/')) {
+    baseUrl = baseUrl.slice(0, -1);
+  }
+  // Se baseUrl não termina com '/' e endpoint não começa com '/', adiciona uma barra
+  else if (!baseUrl.endsWith('/') && !endpoint.startsWith('/')) {
+    baseUrl += '/';
+  }
+  
+  const fullUrl = `${baseUrl}${endpoint}`;
+  const url = new URL(fullUrl);
+  
   Object.entries(params).forEach(([chave, valor]) => {
     if (valor != null) {
       url.searchParams.append(chave, valor);
@@ -35,7 +61,14 @@ export async function buscarJson(url) {
 }
 
 export function logErroFetch(error) {
-  console.error('Erro ao buscar dados de focos:', error);
+  console.error('Erro ao buscar dados:', error);
+  
+  // Log adicional para debug
+  if (error.message?.includes('Invalid URL')) {
+    console.error('Debug - API_BASE_URL:', API_BASE_URL);
+    console.error('Debug - VITE_API_BASE_URL:', import.meta.env.VITE_API_BASE_URL);
+    console.error('Debug - window.location.origin:', typeof window !== 'undefined' ? window.location.origin : 'N/A');
+  }
 }
 
 export function obterDataDeHoje() {
