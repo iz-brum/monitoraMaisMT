@@ -4,6 +4,8 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "build": "cd frontend && npm install && npm run build",
+        "start": "cd backend && npm install && npm start",
         "tunnels": "start-tunnels.bat",
         "dev-backend": "cd backend && npm run dev",
         "dev-frontend": "cd frontend && npm run dev"
