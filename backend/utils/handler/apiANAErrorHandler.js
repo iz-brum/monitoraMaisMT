@@ -53,6 +53,16 @@ const errorTypes = {
             'Token de autenticação não retornado pela API'
         ),
 
+        MISSING_CREDENTIALS: () => new ApiError(
+            'AuthError',
+            500,
+            'Credenciais de autenticação Hidroweb não configuradas. Configure HIDROWEB_USERNAME e HIDROWEB_PASSWORD nas variáveis de ambiente.',
+            {
+                endpoint: HIDROWEB_AUTH_URL,
+                requiredEnvVars: ['HIDROWEB_USERNAME', 'HIDROWEB_PASSWORD']
+            }
+        ),
+
         GENERIC: (error) => new ApiError(
             'AuthError',
             500,

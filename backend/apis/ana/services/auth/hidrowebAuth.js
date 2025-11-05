@@ -11,7 +11,7 @@ import { startTimer } from '#backend_utils/terminalConfig/timerConsole.js';  // 
 dotenv.config();
 
 const HIDROWEB_AUTH_URL = 'https://www.ana.gov.br/hidrowebservice/EstacoesTelemetricas/OAUth/v1';
-const NEW_TOKEN_THRESHOLD_MS = 60 * 1000; // 1 minute
+const NEW_TOKEN_THRESHOLD_MS = 60 * 1000; // 1 minute - token é considerado "novo"
 
 let token = null;
 let pendingAuth = null;
@@ -54,7 +54,7 @@ export function decodeJWTPayload(t) {
  * @param {Error} error
  * @return {Error} Structured error
  */
-const TOKEN_EXPIRATION_BUFFER_MS = 5 * 60 * 1000; // 5 minutos de margem
+const TOKEN_EXPIRATION_BUFFER_MS = 10 * 60 * 1000; // 10 minutos de margem (token ANA TTL = 1 hora)
 
 let tokenCache = {
   value: null,
@@ -64,6 +64,11 @@ let tokenCache = {
 
 /**
  * Authenticates with Hidroweb with minimal operations
+ * 
+ * ANA Token TTL: 1 HORA (3600 segundos)
+ * - Token criado: iat (issued at)
+ * - Token expira: exp (expiration time)  
+ * - Renovação automática: 10 minutos antes do vencimento
  */
 export async function authenticateHidroweb() {
   const now = Date.now();
@@ -83,6 +88,16 @@ export async function authenticateHidroweb() {
     const stopTimer = startTimer('Autenticando token', 'Hidroweb');
 
     try {
+      // Verifica se as credenciais estão configuradas
+      if (!process.env.HIDROWEB_USERNAME || !process.env.HIDROWEB_PASSWORD) {
+        console.error('❌ Credenciais Hidroweb não configuradas!');
+        console.error('   HIDROWEB_USERNAME:', process.env.HIDROWEB_USERNAME ? '✓ definido' : '❌ indefinido');
+        console.error('   HIDROWEB_PASSWORD:', process.env.HIDROWEB_PASSWORD ? '✓ definido' : '❌ indefinido');
+        console.error('   Configure as variáveis no Render Dashboard → Environment');
+        throw errorTypes.AUTH.MISSING_CREDENTIALS();
+      }
+
+      console.log('🔐 Solicitando novo token ANA (TTL: 1 hora)...');
       const { data } = await axios.get(HIDROWEB_AUTH_URL, {
         headers: {
           Identificador: process.env.HIDROWEB_USERNAME,
@@ -110,6 +125,11 @@ export async function authenticateHidroweb() {
         expiration: (decoded.exp || 0) * 1000, // Converte para ms
         refreshPromise: null
       };
+
+      // Log de sucesso com info do TTL
+      const expiresInMs = (decoded.exp * 1000) - Date.now();
+      const expiresInMin = Math.floor(expiresInMs / 60000);
+      console.log(`✅ Token ANA obtido com sucesso! Expira em ${expiresInMin} minutos`);
 
       return newToken;
     } catch (error) {
@@ -171,14 +191,18 @@ export function getTokenStats() {
   const expiresMs = exp * 1000;
   const diffSec = Math.max(0, (expiresMs - now) / 1000 | 0);
 
+  // Verifica se o token está expirado (com margem de segurança)
+  const isExpired = now >= (expiresMs - TOKEN_EXPIRATION_BUFFER_MS);
+
   return {
-    hasValidToken: true,
+    hasValidToken: !isExpired,
     token: activeToken,
     meta: {
       isTokenNew: (now - iat * 1000) < NEW_TOKEN_THRESHOLD_MS,
       createdAt: new Date(iat * 1000).toISOString(),
       expiresAt: new Date(expiresMs).toISOString(),
-      expiresIn: `${diffSec / 60 | 0}' ${diffSec % 60}''`
+      expiresIn: `${diffSec / 60 | 0}' ${diffSec % 60}''`,
+      isExpired
     },
     error: null
   };
