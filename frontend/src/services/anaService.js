@@ -1,5 +1,7 @@
 // frontend/src/services/anaService.js
 
+import { montarUrl } from '../shared/utils/apiHelpers.js';
+
 // Utilitário para data GMT-3 (Brasília)
 function getDataBuscaGMT3() {
   const now = new Date();
@@ -10,15 +12,15 @@ function getDataBuscaGMT3() {
 
 export async function buscarEstacoesANA() {
   try {
-    const url = '/api/ana/estacoes/lista';
-    const params = new URLSearchParams({
+    const params = {
       tipoFiltroData: 'DATA_LEITURA',
       dataBusca: getDataBuscaGMT3(),
       intervalo: 'HORA_24',
       incluirHistorico: true,
-    });
+    };
 
-    const response = await fetch(`${url}?${params.toString()}`);
+    const url = montarUrl('/api/ana/estacoes/lista', params);
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Erro HTTP: ${response.status}`);
     }
@@ -32,19 +34,17 @@ export async function buscarEstacoesANA() {
 
 export async function buscarHistoricoEstacao(codigo, tipoFiltroData, dataBusca, intervalo) {
   try {
-    // A URL agora aponta para a rota de lista unificada.
-    const url = '/api/ana/estacoes/lista';
-    
     // Adicionamos os parâmetros 'codigo' e 'incluirHistorico' para obter o comportamento desejado.
-    const params = new URLSearchParams({
+    const params = {
       codigo, // O código da estação específica.
       incluirHistorico: true, // Sinaliza que queremos o histórico.
       tipoFiltroData,
       dataBusca: dataBusca || getDataBuscaGMT3(),
       intervalo,
-    });
+    };
 
-    const response = await fetch(`${url}?${params.toString()}`);
+    const url = montarUrl('/api/ana/estacoes/lista', params);
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Erro HTTP: ${response.status}`);
     }
@@ -68,7 +68,7 @@ export async function buscarHistoricoEstacao(codigo, tipoFiltroData, dataBusca, 
  */
 export async function buscarMediasDiariasUF() {
   try {
-    const url = '/api/ana/estacoes/estatisticas/medias-diarias/mt/7';
+    const url = montarUrl('/api/ana/estacoes/estatisticas/medias-diarias/mt/7');
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Erro HTTP: ${response.status}`);
@@ -90,15 +90,15 @@ export async function buscarDashboardStats({
   uf = "MT",
   dias = 1
 } = {}) {
-  const url = '/api/ana/estacoes/estatisticas/dashboard';
-  const params = new URLSearchParams({
+  const params = {
     tipoFiltroData,
     dataBusca,
     intervalo,
     uf,
     dias,
-  });
-  const response = await fetch(`${url}?${params.toString()}`);
+  };
+  const url = montarUrl('/api/ana/estacoes/estatisticas/dashboard', params);
+  const response = await fetch(url);
   if (!response.ok) throw new Error('Erro ao buscar estatísticas do dashboard');
   return await response.json();
 }
