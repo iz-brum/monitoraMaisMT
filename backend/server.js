@@ -48,8 +48,8 @@ app.listen(PORT, () => {
 
   // Log adicional APENAS com informações úteis não redundantes
   if (isProduction) {
-    console.log('🚀 MonitorAMT online em produção');
-    console.log('� APIs disponíveis: /api/ana | /api/firms');
+    console.log('🚀 monitora+MT online em produção');
+    console.log('🔗 APIs disponíveis: /api/ana | /api/firms');
   } else {
     console.log('🔧 Desenvolvimento ativo');
     console.log('🔗 Teste: http://localhost:4001/api/ana/auth');
