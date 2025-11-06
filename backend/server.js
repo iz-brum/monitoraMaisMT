@@ -35,7 +35,7 @@ const getServerUrl = () => {
 app.listen(PORT, () => {
   const serverUrl = getServerUrl();
   const isProduction = NODE_ENV === 'production';
-  
+
   debugLog('Servidor Iniciado', {
     status: 'Online',
     porta: PORT,
@@ -46,14 +46,13 @@ app.listen(PORT, () => {
     origem: 'server.js'
   });
 
-  // Log adicional específico para produção
+  // Log adicional APENAS com informações úteis não redundantes
   if (isProduction) {
-    console.log('🚀 Servidor Monitora+MT executando em produção');
-    console.log(`📍 URL pública: ${serverUrl}`);
-    console.log(`🔌 Porta interna: ${PORT}`);
+    console.log('🚀 MonitorAMT online em produção');
+    console.log('� APIs disponíveis: /api/ana | /api/firms');
   } else {
-    console.log('🔧 Servidor em modo desenvolvimento');
-    console.log(`🏠 URL local: ${serverUrl}`);
+    console.log('🔧 Desenvolvimento ativo');
+    console.log('🔗 Teste: http://localhost:4001/api/ana/auth');
   }
 });
 
