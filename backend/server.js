@@ -16,21 +16,45 @@ import { debugLog } from '#backend_utils/debugLog.js';
 dotenv.config();
 
 // Define a porta do servidor a partir da variável de ambiente PORT
-// eslint-disable-next-line no-undef
-const PORT = process.env.PORT;
+// Em produção (Render): process.env.PORT é fornecido dinamicamente
+// Em desenvolvimento: usa 4001 como fallback
+const PORT = process.env.PORT || 4001;
 
-// const API_BASE = process.env.API_BASE || `http://localhost:${PORT}`;
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+// Determina a URL base correta para cada ambiente
+const getServerUrl = () => {
+  if (NODE_ENV === 'production') {
+    // Em produção no Render, usa a URL real fornecida ou constrói baseada no serviço
+    return process.env.RENDER_EXTERNAL_URL || 'https://monitoramaismt.onrender.com';
+  }
+  return `http://localhost:${PORT}`;
+};
 
 // Inicia o servidor na porta definida e exibe mensagem de status no console
 app.listen(PORT, () => {
+  const serverUrl = getServerUrl();
+  const isProduction = NODE_ENV === 'production';
+  
   debugLog('Servidor Iniciado', {
     status: 'Online',
     porta: PORT,
-    url: `http://localhost:${PORT}`,
-    // eslint-disable-next-line no-undef
-    ambiente: process.env.NODE_ENV || 'desenvolvimento',
+    url: serverUrl,
+    ambiente: NODE_ENV,
+    plataforma: isProduction ? 'Render' : 'Local',
+    timestamp: new Date().toISOString(),
     origem: 'server.js'
   });
+
+  // Log adicional específico para produção
+  if (isProduction) {
+    console.log('🚀 Servidor Monitora+MT executando em produção');
+    console.log(`📍 URL pública: ${serverUrl}`);
+    console.log(`🔌 Porta interna: ${PORT}`);
+  } else {
+    console.log('🔧 Servidor em modo desenvolvimento');
+    console.log(`🏠 URL local: ${serverUrl}`);
+  }
 });
 
 export default app;
