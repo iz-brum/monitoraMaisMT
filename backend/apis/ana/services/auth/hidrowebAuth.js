@@ -119,24 +119,24 @@ export async function authenticateHidroweb() {
         throw errorTypes.AUTH.INVALID_TOKEN();
       }
 
-      // Atualiza cache
-      tokenCache = {
-        value: newToken,
-        expiration: (decoded.exp || 0) * 1000, // Converte para ms
-        refreshPromise: null
-      };
+      // Atualiza cache ANTES de limpar refreshPromise
+      const newExpiration = (decoded.exp || 0) * 1000;
+      tokenCache.value = newToken;
+      tokenCache.expiration = newExpiration;
 
       // Log de sucesso com info do TTL
-      const expiresInMs = (decoded.exp * 1000) - Date.now();
+      const expiresInMs = newExpiration - Date.now();
       const expiresInMin = Math.floor(expiresInMs / 60000);
       console.log(`✅ Token ANA obtido com sucesso! Expira em ${expiresInMin} minutos`);
 
       return newToken;
     } catch (error) {
-      // Limpa cache em caso de erro
-      tokenCache.refreshPromise = null;
-      throw handleAuthError(error);
+      // Só limpa o refreshPromise em caso de erro REAL, não sucesso
+      const authError = handleAuthError(error);
+      throw authError;
     } finally {
+      // Limpa refreshPromise no finally para garantir limpeza
+      tokenCache.refreshPromise = null;
       stopTimer();
     }
   })();

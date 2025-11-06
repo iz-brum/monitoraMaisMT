@@ -52,7 +52,7 @@ app.listen(PORT, () => {
     console.log('🔗 APIs disponíveis: /api/ana | /api/firms');
   } else {
     console.log('🔧 Desenvolvimento ativo');
-    console.log('🔗 Teste: http://localhost:4001/api/ana/auth');
+    console.log('🔗 APIs disponíveis: /api/ana | /api/firms');
   }
 });
 
