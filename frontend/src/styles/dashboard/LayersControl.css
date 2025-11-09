@@ -240,6 +240,26 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
+/* Ícone da legenda (usado pelo botão de legenda em AnaLayerControlPanel) */
+.leaflet-control-legend-btn a.legend-control-button {
+  width: 30px;
+  height: 30px;
+  display: block;
+  background-image: url('/src/assets/imgs/iconesPersonalizados/legend_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 4px;
+  /* mantém o botão clicável e acessível */
+}
+
+/* Pequeno ajuste visual do container do botão (mantido similar ao anterior) */
+.leaflet-control-legend-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 
 

@@ -184,13 +184,9 @@ export default function AnaLayerControlPanel({ onMarkerClick }) {
                 button.href = '#';
                 button.title = 'Ver legenda';
 
-                button.innerHTML = `
-                    <img 
-                        src="src/assets/imgs/iconesPersonalizados/legend_icon.png" 
-                        alt="Legenda" 
-                        style="pointer-events: none; width: 30px; height: 30px;" 
-                    />
-                `;
+                // Usa classe CSS para renderizar o ícone (imagem por background) em vez de <img> inline
+                button.className = 'legend-control-button';
+                button.setAttribute('aria-label', 'Ver legenda');
 
                 L.DomEvent.on(button, 'click', function (e) {
                     L.DomEvent.stopPropagation(e);
